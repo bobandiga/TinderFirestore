@@ -20,14 +20,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4C93F9A2-6B92-4DEF-B44C-B81FEA262C54 - d6ebe34f63f42b1"
+                  uuid = "4C93F9A2-6B92-4DEF-B44C-B81FEA262C54 - 1b681db87b9869ce"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "UIAdvanced.RegisterViewModel.preformRegistration(completion: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "UIAdvanced"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/max_shaptala/Projects/Learning(Books&amp;Videos)/Swift/UIAdvanced/UIAdvanced/ViewModels/RegisterViewModel.swift"
+                  urlString = "file:///Users/max_shaptala/Projects/swift/TinderFirestore/UIAdvanced/UIAdvanced/ViewModels/RegisterViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "91"
@@ -35,14 +35,14 @@
                   offsetFromSymbolStart = "759">
                </Location>
                <Location
-                  uuid = "4C93F9A2-6B92-4DEF-B44C-B81FEA262C54 - bcb86c0cc16594d"
+                  uuid = "4C93F9A2-6B92-4DEF-B44C-B81FEA262C54 - 1dcd254c41b17232"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in UIAdvanced.RegisterViewModel.preformRegistration(completion: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "UIAdvanced"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/max_shaptala/Projects/Learning(Books&amp;Videos)/Swift/UIAdvanced/UIAdvanced/ViewModels/RegisterViewModel.swift"
+                  urlString = "file:///Users/max_shaptala/Projects/swift/TinderFirestore/UIAdvanced/UIAdvanced/ViewModels/RegisterViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"

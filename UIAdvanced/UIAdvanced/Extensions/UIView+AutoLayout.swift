@@ -11,6 +11,7 @@ import UIKit
 extension UIView{
     func fillToSuperview(){
         guard let superview = superview else { return }
+        self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.topAnchor.constraint(equalTo: superview.topAnchor),
             self.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
@@ -21,6 +22,7 @@ extension UIView{
     
     func fillToSuperviewSafeArea(){
         guard let superview = superview else { return }
+        self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.topAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.topAnchor),
             self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor),
@@ -31,6 +33,7 @@ extension UIView{
     
     func constraintToSuperviewWith(l: CGFloat? = nil, r: CGFloat? = nil, t: CGFloat? = nil, b: CGFloat? = nil) {
         guard let superview = superview else { return }
+        self.translatesAutoresizingMaskIntoConstraints = false
         if let leading = l {
             self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: leading).isActive = true
         }
@@ -47,6 +50,7 @@ extension UIView{
     
     func constraintToSuperviewSafeAreaWith(l: CGFloat? = nil, r: CGFloat? = nil, t: CGFloat? = nil, b: CGFloat? = nil) {
         guard let superview = superview else { return }
+        self.translatesAutoresizingMaskIntoConstraints = false
         if let leading = l {
             self.leadingAnchor.constraint(equalTo: superview.safeAreaLayoutGuide.leadingAnchor, constant: leading).isActive = true
         }

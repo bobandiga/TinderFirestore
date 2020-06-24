@@ -32,9 +32,9 @@
 		B758F8B0244282CA00ED5E17 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758F8AF244282CA00ED5E17 /* UITableView.swift */; };
 		B758F8B22442832900ED5E17 /* UItableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758F8B12442832900ED5E17 /* UItableViewCell.swift */; };
 		B758F8B4244374DE00ED5E17 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758F8B3244374DE00ED5E17 /* Dictionary.swift */; };
-		B758F8B62443E07E00ED5E17 /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B758F8B52443E07E00ED5E17 /* SettingsHeaderView.swift */; };
 		B7DC369224A0E560005DE021 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DC369124A0E560005DE021 /* UIButton.swift */; };
 		B7DC369424A0E95A005DE021 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DC369324A0E95A005DE021 /* SettingsViewController.swift */; };
+		B7DF821F24A3FA500032DC9D /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DF821E24A3FA500032DC9D /* SettingsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,9 +67,9 @@
 		B758F8AF244282CA00ED5E17 /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		B758F8B12442832900ED5E17 /* UItableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UItableViewCell.swift; sourceTree = "<group>"; };
 		B758F8B3244374DE00ED5E17 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
-		B758F8B52443E07E00ED5E17 /* SettingsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
 		B7DC369124A0E560005DE021 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		B7DC369324A0E95A005DE021 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B7DF821E24A3FA500032DC9D /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +148,7 @@
 				B7513A5E243BEDBD002E2C1C /* CardInfoView.swift */,
 				B7513A60243CF530002E2C1C /* CardBarView.swift */,
 				B7545526243E64F300A5B81B /* AuthorizationTextField.swift */,
-				B758F8B52443E07E00ED5E17 /* SettingsHeaderView.swift */,
+				B7DF821E24A3FA500032DC9D /* SettingsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,7 +318,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7513A61243CF530002E2C1C /* CardBarView.swift in Sources */,
-				B758F8B62443E07E00ED5E17 /* SettingsHeaderView.swift in Sources */,
 				B71DD7762409679100972106 /* TopNavigationStackView.swift in Sources */,
 				B7513A68243E2B1B002E2C1C /* RegistrationViewController.swift in Sources */,
 				B758F8B22442832900ED5E17 /* UItableViewCell.swift in Sources */,
@@ -332,6 +331,7 @@
 				B7545527243E64F300A5B81B /* AuthorizationTextField.swift in Sources */,
 				B758F8AE2442829D00ED5E17 /* TableViewDataSource.swift in Sources */,
 				B71DD75C2409651E00972106 /* AppDelegate.swift in Sources */,
+				B7DF821F24A3FA500032DC9D /* SettingsCell.swift in Sources */,
 				B7513A55243A99B2002E2C1C /* User.swift in Sources */,
 				B71DD7782409679A00972106 /* HomeBottomControlsStackView.swift in Sources */,
 				B758F8B4244374DE00ED5E17 /* Dictionary.swift in Sources */,
