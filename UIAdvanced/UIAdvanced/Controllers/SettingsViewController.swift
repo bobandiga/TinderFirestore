@@ -59,7 +59,7 @@ class SettingsViewController: UITableViewController {
     
     var user: User?
     fileprivate func fetchCurrentUser() {
-        let uid = "zQ5WANIIAuQ7kwfOl6zfxttAWIU2"//Auth.auth().currentUser?.uid else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         print(uid)
         Firestore.firestore().collection("users").document(uid).getDocument { [weak self] (snapshot, error) in
             if let err = error {
@@ -69,9 +69,17 @@ class SettingsViewController: UITableViewController {
             
             guard let dictionary = snapshot?.data() else { return }
             self?.user = User(dictionary)
+            self?.fetchUserPhoto()
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
+        }
+    }
+    
+    fileprivate func fetchUserPhoto() {
+        guard let imageUrl = user?.imageNames.first, let url = URL(string: imageUrl) else { return }
+        SDWebImageManager().loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, _, _, _, _) in
+            self.image1Button.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
     }
     
@@ -85,6 +93,7 @@ class SettingsViewController: UITableViewController {
         }
         
         let headerLabel = HeaderLabel()
+        headerLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         switch section {
         case 1:
             headerLabel.text = "Name"
@@ -94,6 +103,8 @@ class SettingsViewController: UITableViewController {
             headerLabel.text = "Age"
         case 4:
             headerLabel.text = "Bio"
+        case 5:
+            headerLabel.text = "Age range seek"
         default:
             break
         }
@@ -107,7 +118,7 @@ class SettingsViewController: UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,17 +126,30 @@ class SettingsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 5 {
+            let cell = RangeAgeCell(style: .default, reuseIdentifier: nil)
+            cell.minAgeSlider.addTarget(self, action: #selector(minAgeChangeHandle(_:)), for: .valueChanged)
+            cell.minAgeLabel.text = "Min \(user?.minSeekingAge ?? -1)"
+            cell.maxAgeSlider.addTarget(self, action: #selector(maxAgeChangeHandle(_:)), for: .valueChanged)
+            cell.maxAgeLabel.text = "Max \(user?.maxSeekingAge ?? -1)"
+            return cell
+        }
+        
         let cell = SettingsCell(style: .default, reuseIdentifier: nil)
         switch indexPath.section {
         case 1:
             cell.textField.placeholder = "Enter Name"
             cell.textField.text = user?.name
+            cell.textField.addTarget(self, action: #selector(nameTFHandle(_:)), for: .editingChanged)
         case 2:
             cell.textField.placeholder = "Enter Profession"
             cell.textField.text = user?.profession
+            cell.textField.addTarget(self, action: #selector(professionTFHandle(_:)), for: .editingChanged)
         case 3:
             cell.textField.placeholder = "Enter Age"
             cell.textField.text = String(user?.age ?? 0)
+            cell.textField.addTarget(self, action: #selector(ageTFHandle(_:)), for: .editingChanged)
         case 4:
             cell.textField.placeholder = "Enter Bio"
             //cell.textField.text = user?.
@@ -158,7 +182,27 @@ fileprivate extension SettingsViewController {
     
     @objc
     func saveHandle() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let saveDict: [String: Any] = [
+            "uid": uid,
+            "fullName": user?.name ?? "",
+            "image1Url": user?.imageNames.first ?? "",
+            "age": user?.age ?? -1,
+            "profession": user?.profession ?? "",
+            "minSeekingAge": user?.minSeekingAge ?? -1,
+            "maxSeekingAge": user?.maxSeekingAge ?? -1,
+        ]
         
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Save settings"
+        hud.show(in: view)
+        Firestore.firestore().collection("users").document(uid).setData(saveDict) { (error) in
+            hud.dismiss(animated: true)
+            if let err = error {
+                return
+            }
+            print("updated user info")
+        }
     }
     
     @objc
@@ -173,6 +217,40 @@ fileprivate extension SettingsViewController {
         imagePicker.senderButton = sender
         imagePicker.delegate = self
         navigationController?.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    @objc
+    func nameTFHandle(_ sender: UITextField) {
+        print("Name: ", sender.text)
+        user?.name = sender.text
+    }
+    
+    @objc
+    func professionTFHandle(_ sender: UITextField) {
+        print("Profession: ", sender.text)
+        user?.profession = sender.text
+    }
+    
+    @objc
+    func ageTFHandle(_ sender: UITextField) {
+        print("Age: ", sender.text)
+        user?.age = Int(sender.text ?? "")
+    }
+    
+    @objc
+    func minAgeChangeHandle(_ sender: UISlider) {
+        let value = Int(sender.value)
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 5)) as? RangeAgeCell else { return }
+        cell.minAgeLabel.text = "Min \(value)"
+        self.user?.minSeekingAge = value
+    }
+    
+    @objc
+    func maxAgeChangeHandle(_ sender: UISlider) {
+        let value = Int(sender.value)
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 5)) as? RangeAgeCell else { return }
+        cell.maxAgeLabel.text = "Max \(value)"
+        self.user?.maxSeekingAge = value
     }
 }
 

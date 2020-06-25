@@ -41,6 +41,7 @@ class HomeViewController: UIViewController {
         
         fetchUsers()
     
+        
     }
     
     
@@ -59,7 +60,6 @@ class HomeViewController: UIViewController {
             } else {
                 snapshot?.documents.forEach({ [unowned self] (documentSnapshot) in
                     let userDictionary = documentSnapshot.data()
-                    print(userDictionary)
                     let user = User(userDictionary)
                     self.cards.append(CardViewModel(user: user))
                     self.lastFetchedUser = user

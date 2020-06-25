@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         settings.areTimestampsInSnapshotsEnabled = true
         db.settings = settings
         
+        
         return true
     }
 
